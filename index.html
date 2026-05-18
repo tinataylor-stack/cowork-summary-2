@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude COWORK Live #2 — สรุปสิ่งที่เรียนรู้ | Tina Taylor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --terra: #CC785C;
+    --terra-light: #F5E6DF;
+    --terra-dark: #9A4E32;
+    --black: #1A1A1A;
+    --dark: #2D2D2D;
+    --cream: #F5F0E8;
+    --green: #1D9E75;
+    --red: #E24B4A;
+    --border: rgba(26,26,26,0.1);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Sarabun', sans-serif; background: var(--cream); color: var(--black); line-height: 1.7; }
+
+  .sticky-nav { position: sticky; top: 0; z-index: 100; display: flex; overflow-x: auto; background: var(--black); -webkit-overflow-scrolling: touch; scrollbar-width: none; box-shadow: 0 2px 12px rgba(0,0,0,0.3); }
+  .sticky-nav::-webkit-scrollbar { display: none; }
+  .nav-tab { flex-shrink: 0; padding: 14px 18px; font-size: 13px; font-family: 'Sarabun', sans-serif; color: rgba(255,255,255,0.45); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; text-decoration: none; display: block; transition: all 0.2s; }
+  .nav-tab:hover { color: rgba(255,255,255,0.8); }
+  .nav-tab.active { color: var(--terra); border-bottom-color: var(--terra); }
+
+  .hero { background: var(--black); color: white; padding: 48px 24px 40px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 200px; height: 200px; border-radius: 50%; background: rgba(204,120,92,0.1); }
+  .hero::after { content: ''; position: absolute; bottom: -40px; left: -40px; width: 150px; height: 150px; border-radius: 50%; background: rgba(204,120,92,0.07); }
+  .hero-label { font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--terra); margin-bottom: 16px; }
+  .hero h1 { font-family: 'Kanit', sans-serif; font-size: 32px; font-weight: 700; line-height: 1.2; margin-bottom: 8px; }
+  .hero h1 span { color: var(--terra); }
+  .hero p { font-size: 15px; opacity: 0.6; margin-top: 12px; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(204,120,92,0.15); border: 1px solid rgba(204,120,92,0.3); border-radius: 20px; padding: 6px 16px; margin-top: 20px; font-size: 13px; color: var(--terra); }
+
+  .video-banner { background: linear-gradient(135deg, #1a1a1a 0%, #2d1810 100%); border: 1px solid rgba(204,120,92,0.3); border-radius: 16px; padding: 18px 20px; display: flex; align-items: center; gap: 14px; text-decoration: none; }
+  .video-play { width: 44px; height: 44px; background: var(--terra); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .video-play svg { margin-left: 3px; }
+  .video-text div:first-child { font-size: 11px; color: var(--terra); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+  .video-text div:last-child { font-family: 'Kanit', sans-serif; font-size: 15px; font-weight: 600; color: white; }
+
+  .section-wrap { max-width: 600px; margin: 0 auto; padding: 28px 20px; }
+
+  .section-divider { background: var(--black); color: white; padding: 18px 20px; }
+  .section-divider-inner { max-width: 600px; margin: 0 auto; display: flex; align-items: center; gap: 12px; }
+  .sdiv-icon { font-size: 20px; width: 40px; height: 40px; background: rgba(204,120,92,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .section-divider h2 { font-family: 'Kanit', sans-serif; font-size: 20px; font-weight: 700; }
+  .section-divider h2 span { color: var(--terra); }
+  .section-divider p { font-size: 13px; opacity: 0.5; margin-top: 2px; }
+
+  .card { background: white; border-radius: 16px; padding: 20px; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); border: 0.5px solid var(--border); }
+  .card-title { font-family: 'Kanit', sans-serif; font-size: 17px; font-weight: 600; margin-bottom: 10px; color: var(--terra); }
+  .card p { font-size: 15px; line-height: 1.7; color: var(--dark); }
+
+  .highlight { background: var(--terra-light); border-left: 3px solid var(--terra); border-radius: 0 12px 12px 0; padding: 16px 20px; margin-bottom: 16px; font-size: 15px; line-height: 1.7; }
+  .highlight strong { color: var(--terra-dark); }
+
+  .pain-card { background: white; border-radius: 16px; padding: 18px 20px; margin-bottom: 12px; border: 0.5px solid var(--border); box-shadow: 0 1px 4px rgba(0,0,0,0.06); display: flex; gap: 14px; align-items: flex-start; }
+  .pain-pct { font-family: 'Kanit', sans-serif; font-size: 22px; font-weight: 700; color: var(--terra); flex-shrink: 0; min-width: 50px; line-height: 1; padding-top: 2px; }
+  .pain-title { font-weight: 600; font-size: 15px; margin-bottom: 6px; }
+  .pain-quotes { font-size: 13px; opacity: 0.55; line-height: 1.7; }
+
+  .flow-wrap { background: white; border-radius: 16px; padding: 20px; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); border: 0.5px solid var(--border); }
+  .flow-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; opacity: 0.45; }
+  .flow-label.new { color: var(--green); opacity: 1; }
+  .flow-row { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+  .flow-box { background: rgba(204,120,92,0.1); border: 1px solid rgba(204,120,92,0.3); border-radius: 8px; padding: 6px 10px; font-size: 12px; font-weight: 500; text-align: center; line-height: 1.4; }
+  .flow-box.ai { background: rgba(204,120,92,0.25); border-color: var(--terra); color: var(--terra-dark); }
+  .flow-box.long { flex: 1; min-width: 130px; }
+  .flow-arrow { font-size: 14px; color: var(--terra); opacity: 0.7; }
+  .flow-note { font-size: 12px; opacity: 0.45; margin-top: 10px; font-style: italic; }
+  .flow-note.good { color: var(--green); opacity: 1; font-style: normal; font-weight: 600; font-size: 13px; }
+
+  .cost-table { background: white; border-radius: 16px; padding: 20px; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); border: 0.5px solid var(--border); }
+  .cost-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 0.5px solid var(--border); font-size: 14px; }
+  .cost-total { display: flex; justify-content: space-between; padding-top: 14px; margin-top: 6px; border-top: 1.5px solid rgba(26,26,26,0.15); font-weight: 700; font-size: 15px; }
+  .cost-total span:last-child { font-family: 'Kanit', sans-serif; }
+
+  .compare-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  .compare-box { background: white; border-radius: 14px; padding: 16px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.06); border: 0.5px solid var(--border); }
+  .compare-box.after { border-color: rgba(204,120,92,0.4); }
+  .compare-label { font-size: 11px; opacity: 0.45; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .compare-label.after { color: var(--terra); opacity: 1; font-weight: 600; }
+  .compare-num { font-family: 'Kanit', sans-serif; font-size: 20px; font-weight: 700; color: rgba(26,26,26,0.35); }
+  .compare-num.after { color: var(--terra); font-size: 26px; }
+  .compare-sub { font-size: 12px; opacity: 0.4; margin-top: 4px; }
+
+  .savings-pill { background: rgba(204,120,92,0.12); border: 1px solid rgba(204,120,92,0.3); border-radius: 12px; padding: 14px 20px; margin-bottom: 16px; text-align: center; }
+  .savings-pill div:first-child { font-size: 13px; opacity: 0.6; margin-bottom: 4px; }
+  .savings-pill div:last-child { font-family: 'Kanit', sans-serif; font-size: 20px; font-weight: 700; color: var(--terra); }
+
+  .machine-card { background: white; border-radius: 16px; padding: 20px; margin-bottom: 16px; border: 0.5px solid var(--border); box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .machine-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .machine-icon { font-size: 22px; width: 44px; height: 44px; background: var(--terra-light); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .machine-name { font-family: 'Kanit', sans-serif; font-size: 18px; font-weight: 700; color: var(--terra); }
+  .machine-sub { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terra); opacity: 0.7; margin-bottom: 2px; }
+  .machine-desc { font-size: 13px; opacity: 0.55; }
+  .machine-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .tag { background: var(--terra-light); color: var(--terra-dark); border-radius: 20px; padding: 4px 12px; font-size: 12px; font-weight: 500; }
+  .demo-note { background: var(--cream); border-radius: 10px; padding: 12px 14px; font-size: 13px; color: var(--dark); display: flex; align-items: flex-start; gap: 8px; }
+  .demo-note a { color: var(--terra); font-weight: 600; text-decoration: none; }
+
+  .prompt-box { background: var(--black); border-radius: 16px; padding: 20px; margin-bottom: 16px; }
+  .prompt-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--terra); margin-bottom: 12px; }
+  .prompt-text { font-family: 'Sarabun', sans-serif; font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.8; white-space: pre-wrap; }
+  .copy-btn { display: flex; align-items: center; gap: 6px; margin-top: 14px; background: rgba(204,120,92,0.15); border: 1px solid rgba(204,120,92,0.3); border-radius: 8px; padding: 8px 14px; color: var(--terra); font-size: 13px; font-family: 'Sarabun', sans-serif; cursor: pointer; width: fit-content; transition: background 0.2s; }
+  .copy-btn:hover { background: rgba(204,120,92,0.25); }
+  .copy-btn.copied { color: var(--green); border-color: var(--green); background: rgba(29,158,117,0.1); }
+
+  .check-list { list-style: none; }
+  .check-list li { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 12px; font-size: 15px; line-height: 1.6; }
+  .ci { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+  .cg { background: rgba(29,158,117,0.15); color: var(--green); }
+  .cr { background: rgba(226,75,74,0.15); color: var(--red); }
+
+  .num-list { list-style: none; }
+  .num-list li { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 16px; }
+  .num-badge { width: 28px; height: 28px; border-radius: 50%; background: var(--terra); color: white; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+  .num-list li div { font-size: 15px; line-height: 1.7; }
+  .num-list li strong { display: block; font-weight: 600; margin-bottom: 2px; }
+
+  .offer-price { text-align: center; padding: 28px 20px; background: white; border-radius: 20px; border: 2px solid var(--terra); margin-bottom: 16px; box-shadow: 0 4px 20px rgba(204,120,92,0.15); }
+  .offer-original { font-size: 20px; text-decoration: line-through; opacity: 0.35; font-family: 'Kanit', sans-serif; }
+  .offer-price-num { font-family: 'Kanit', sans-serif; font-size: 52px; font-weight: 700; color: var(--terra); line-height: 1; margin: 8px 0; }
+  .offer-sub { font-size: 13px; opacity: 0.5; }
+  .offer-cta { display: block; background: var(--terra); color: white; text-align: center; padding: 16px; border-radius: 12px; font-family: 'Kanit', sans-serif; font-size: 18px; font-weight: 600; text-decoration: none; margin-bottom: 12px; }
+  .guarantee { text-align: center; font-size: 13px; opacity: 0.6; padding: 12px; }
+
+  .divider { height: 1px; background: var(--border); margin: 20px 0; }
+
+  .footer { background: var(--black); color: rgba(255,255,255,0.4); text-align: center; padding: 28px 20px; font-size: 13px; }
+  .footer strong { color: var(--terra); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-label">Tina Taylor · Claude COWORK · Live #2</div>
+  <h1>สรุปสิ่งที่<span> เรียนรู้</span><br>จาก Live Session</h1>
+  <p>ทุกอย่างที่คุณเห็นในคืนนี้ — รวบไว้ที่นี่แล้ว</p>
+  <div class="hero-badge">🗓 18 พฤษภาคม 2568</div>
+</div>
+
+<nav class="sticky-nav" id="mainNav">
+  <a class="nav-tab active" href="#highlights">🔑 Key Points</a>
+  <a class="nav-tab" href="#machines">⚙️ 3 Demos</a>
+  <a class="nav-tab" href="#prompts">💬 Prompts</a>
+  <a class="nav-tab" href="#fit">✓ เหมาะกับใคร</a>
+  <a class="nav-tab" href="#offer">🚀 Workshop</a>
+</nav>
+
+<div style="max-width: 600px; margin: 24px auto; padding: 0 20px;">
+  <a href="https://vimeo.com/1193296338?share=copy&fl=sv&fe=ci" target="_blank" class="video-banner">
+    <div class="video-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+    <div class="video-text">
+      <div>ดูวิดีโอย้อนหลัง</div>
+      <div>Claude COWORK Live #2 · 18 พ.ค. 68</div>
+    </div>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+  </a>
+</div>
+
+<!-- KEY HIGHLIGHTS -->
+<div id="highlights">
+  <div class="section-divider">
+    <div class="section-divider-inner">
+      <div class="sdiv-icon">🔑</div>
+      <div><h2>Key <span>Highlights</span></h2><p>สิ่งสำคัญที่ต้องจำจาก session นี้</p></div>
+    </div>
+  </div>
+  <div class="section-wrap">
+
+    <div style="font-family:'Kanit',sans-serif;font-size:18px;font-weight:700;margin-bottom:14px;">คุณติน่า เทย์เลอร์ คือใคร?</div>
+    <div class="card" style="margin-bottom:16px;">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px;">
+        <div style="width:72px;height:72px;border-radius:12px;overflow:hidden;border:2px solid var(--terra);flex-shrink:0;">
+          <img src="https://static.wixstatic.com/media/cb13bf_803be8cec30844068100b444d6f0ef0b~mv2.jpg" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div>
+          <div style="font-family:'Kanit',sans-serif;font-size:18px;font-weight:700;">Tina Taylor</div>
+          <div style="font-size:13px;color:var(--terra);">Online Business & AI Educator</div>
+        </div>
+      </div>
+      <ul class="check-list">
+        <li><span class="ci cg">✓</span><span>ทำธุรกิจออนไลน์มากกว่า <strong>10 ปี</strong></span></li>
+        <li><span class="ci cg">✓</span><span>ช่วยนักเรียนกว่า <strong>1,000+ คน</strong> ด้าน Digital Marketing</span></li>
+        <li><span class="ci cg">✓</span><span>ยอดขายของนักเรียนรวมกันเกิน <strong style="color:var(--terra);">100 ล้านบาท</strong></span></li>
+        <li><span class="ci cg">✓</span><span>สร้างรายได้ออนไลน์ส่วนตัวเกิน <strong style="color:var(--terra);">60 ล้านบาท</strong></span></li>
+        <li><span class="ci cg">✓</span><span>จบการศึกษาจาก <strong>Waldorf University</strong> สหรัฐอเมริกา · Mass Communications · เกียรตินิยมอันดับ 1</span></li>
+      </ul>
+      <div style="margin-top:14px;display:flex;gap:16px;flex-wrap:wrap;">
+        <div style="text-align:center;"><div style="font-family:'Kanit',sans-serif;font-size:18px;font-weight:700;color:var(--terra);">691K</div><div style="font-size:11px;opacity:0.5;">YouTube</div></div>
+        <div style="text-align:center;"><div style="font-family:'Kanit',sans-serif;font-size:18px;font-weight:700;color:var(--terra);">686K</div><div style="font-size:11px;opacity:0.5;">Facebook</div></div>
+        <div style="text-align:center;"><div style="font-family:'Kanit',sans-serif;font-size:18px;font-weight:700;color:var(--terra);">144.6K</div><div style="font-size:11px;opacity:0.5;">TikTok</div></div>
+        <div style="text-align:center;"><div style="font-family:'Kanit',sans-serif;font-size:18px;font-weight:700;color:var(--terra);">46.6K</div><div style="font-size:11px;opacity:0.5;">Instagram</div></div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div style="font-family:'Kanit',sans-serif;font-size:18px;font-weight:700;margin-bottom:14px;">เรื่องจริงที่ทำให้ทุกอย่างเปลี่ยน</div>
+
+    <div class="highlight"><strong>ค่าทีมการตลาด 308,000 บาท/เดือน</strong><br>ช่วงที่ธุรกิจดีที่สุด ก็คือช่วงที่จ่ายแพงที่สุด จ่ายทีมไปเต็มๆ แต่ output ไม่ได้โตตามสัดส่วน</div>
+
+    <div class="card" style="margin-bottom:12px;">
+      <div class="card-title">ลอง ChatGPT แล้วไม่ work เพราะอะไร?</div>
+      <ul class="check-list">
+        <li><span class="ci cr">✕</span><span>ตอบมาแล้วต้อง copy paste ทุกอย่างเอง</span></li>
+        <li><span class="ci cr">✕</span><span>ถ้า prompt ไม่ดี ผลลัพธ์ก็แย่</span></li>
+        <li><span class="ci cr">✕</span><span>สุดท้ายคุณทำงานให้ AI ไม่ใช่ AI ทำงานให้คุณ</span></li>
+      </ul>
+    </div>
+
+    <div class="card" style="margin-bottom:12px;">
+      <div class="card-title">จนกระทั่งเจอ Claude Cowork</div>
+      <p>Claude ไม่ได้แค่ตอบใน chat — มันทำงานแทนคุณ <strong>นอก chat</strong> ด้วย เชื่อมต่อกับ Notion, Line OA, Google Drive แล้ว execute งานให้เลย</p>
+      <div style="margin-top:12px;padding:10px 14px;background:var(--cream);border-radius:8px;font-size:14px;font-style:italic;opacity:0.7;">"นี่แหละคือสิ่งที่เราต้องการมาตลอด"</div>
+    </div>
+
+    <div class="compare-wrap">
+      <div class="compare-box"><div class="compare-label">ก่อน</div><div class="compare-num">308,000 ฿</div><div class="compare-sub">ต่อเดือน</div></div>
+      <div class="compare-box after"><div class="compare-label after">ตอนนี้</div><div class="compare-num after">72,000 ฿</div><div class="compare-sub">ต่อเดือน</div></div>
+    </div>
+    <div class="savings-pill"><div>ประหยัดได้</div><div>236,000 ฿/เดือน · เกือบ 3 ล้านบาท/ปี</div></div>
+
+    <div class="divider"></div>
+    <div style="font-family:'Kanit',sans-serif;font-size:18px;font-weight:700;margin-bottom:14px;">วิธีเก่า vs วิธีใหม่</div>
+
+    <div class="flow-wrap">
+      <div class="flow-label">วิธีเก่า — ใช้ AI ทั่วไป</div>
+      <div class="flow-row">
+        <div class="flow-box">Input<br><small>คุณ</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box ai">Generate<br><small>AI</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box long">Copy · Paste · Format · อัพโหลด · โพสต์เอง<br><small style="color:var(--red);opacity:0.8;">คุณทำงานทั้งหมดเอง</small></div>
+      </div>
+    </div>
+
+    <div class="flow-wrap">
+      <div class="flow-label new">วิธีใหม่ — Claude Cowork</div>
+      <div class="flow-row">
+        <div class="flow-box">Input<br><small>คุณ</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box ai">Generate<br><small>Claude</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">Review<br><small>คุณ</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box ai">Publish<br><small>Claude</small></div>
+      </div>
+      <div class="flow-note good">✓ Quality control อยู่ที่คุณ — งานหนักทั้งหมดเป็นของ Claude</div>
+    </div>
+
+    <div class="divider"></div>
+    <div style="font-family:'Kanit',sans-serif;font-size:18px;font-weight:700;margin-bottom:14px;">3 ปัญหาใหญ่ของเจ้าของธุรกิจที่ใช้ AI</div>
+
+    <div class="pain-card">
+      <div class="pain-pct">~32%</div>
+      <div><div class="pain-title">เครื่องมือเยอะเกินไป ไม่รู้จะเริ่มจากไหน</div><div class="pain-quotes">"มี tools ให้เลือกเยอะมาก" · "ไม่มี blueprint ชัดเจน"</div></div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-pct">~21%</div>
+      <div><div class="pain-title">จ้างเพิ่มก็แพง ไม่จ้างก็งานล้น</div><div class="pain-quotes">"จ่ายเงินเดือนทีมไปเต็มๆ แต่ output น้อยและช้า"</div></div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-pct">~17%</div>
+      <div><div class="pain-title">ใช้ AI แล้ว แต่ยังทำงานเองอยู่</div><div class="pain-quotes">"ยังต้อง copy paste ทุกอย่างเอง" · "AI ตอบแล้วแต่ยังต้องแก้เองอีก"</div></div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="highlight">
+      <strong>หลักสำคัญ: โฟกัสจุดที่ให้ผลตอบแทนมากที่สุดก่อน</strong><br>
+      อย่า prioritize สิ่งที่ประหยัดเวลา — prioritize สิ่งที่ให้ผลตอบแทน<u>มากที่สุดในเวลาน้อยที่สุด</u>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Notion Workflow ทำงานยังไง?</div>
+      <div style="display:flex;gap:0;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:12px;">
+        <div style="background:var(--terra-light);border:1px solid rgba(204,120,92,0.3);border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600;text-align:center;">💡 Ideas<br><span style="font-size:11px;opacity:0.6;font-weight:400;">Claude เก็บไอเดีย</span></div>
+        <div style="color:var(--terra);font-size:18px;">→</div>
+        <div style="background:var(--terra-light);border:1px solid rgba(204,120,92,0.3);border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600;text-align:center;">✓ Approved<br><span style="font-size:11px;opacity:0.6;font-weight:400;">คุณ approve</span></div>
+        <div style="color:var(--terra);font-size:18px;">→</div>
+        <div style="background:var(--terra-light);border:1px solid rgba(204,120,92,0.3);border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600;text-align:center;">📝 Ready<br><span style="font-size:11px;opacity:0.6;font-weight:400;">Claude สร้างเสร็จ</span></div>
+        <div style="color:var(--terra);font-size:18px;">→</div>
+        <div style="background:rgba(29,158,117,0.15);border:1px solid rgba(29,158,117,0.3);border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600;text-align:center;color:var(--green);">✅ Posted<br><span style="font-size:11px;opacity:0.6;font-weight:400;">Claude โพสต์</span></div>
+      </div>
+      <p style="font-size:14px;opacity:0.7;">คุณทำงานแค่ช่วง Approve — ที่เหลือ Claude จัดการให้ทั้งหมด</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- 3 DEMOS -->
+<div id="machines">
+  <div class="section-divider">
+    <div class="section-divider-inner">
+      <div class="sdiv-icon">⚙️</div>
+      <div><h2>3 <span>Live Demos</span></h2><p>ดูวิดีโอย้อนหลังเพื่อเห็น demo จริงๆ</p></div>
+    </div>
+  </div>
+  <div class="section-wrap">
+
+    <a href="https://vimeo.com/1193296338?share=copy&fl=sv&fe=ci" target="_blank" class="video-banner" style="margin-bottom:24px;">
+      <div class="video-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+      <div class="video-text"><div>ดู Demo ย้อนหลัง</div><div>กดเพื่อเปิดวิดีโอ</div></div>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    </a>
+
+    <div class="machine-card">
+      <div class="machine-header">
+        <div class="machine-icon">📣</div>
+        <div><div class="machine-sub">Demo 1 / 3</div><div class="machine-name">Content Machine</div><div class="machine-desc">โพสต์คอนเทนท์ลง Social Media</div></div>
+      </div>
+      <div class="machine-tags"><span class="tag">ทำคอนเทนต์</span><span class="tag">เขียนโฆษณา</span><span class="tag">รีโพส/ดัดแปลง</span><span class="tag">เขียนสคริปต์วิดีโอ</span></div>
+      <div class="demo-note">🎬 <span>ดู demo นี้ใน <a href="https://vimeo.com/1193296338?share=copy&fl=sv&fe=ci" target="_blank">วิดีโอย้อนหลัง</a> — เห็น Claude คิด/สร้าง/Schedule คอนเทนท์สดๆ</span></div>
+    </div>
+
+    <div class="machine-card">
+      <div class="machine-header">
+        <div class="machine-icon">🚀</div>
+        <div><div class="machine-sub">Demo 2 / 3</div><div class="machine-name">Launch Machine</div><div class="machine-desc">เปิดตัว Offer · Sales Funnel · แคมเปญ</div></div>
+      </div>
+      <div class="machine-tags"><span class="tag">ทำแคมเปญ Launch</span><span class="tag">Sales Page</span><span class="tag">ออกแบบ Offer</span></div>
+      <div class="demo-note">🎬 <span>ดู demo นี้ใน <a href="https://vimeo.com/1193296338?share=copy&fl=sv&fe=ci" target="_blank">วิดีโอย้อนหลัง</a> — เห็น Claude สร้างแคมเปญสดๆ</span></div>
+    </div>
+
+    <div class="machine-card">
+      <div class="machine-header">
+        <div class="machine-icon">🔍</div>
+        <div><div class="machine-sub">Demo 3 / 3</div><div class="machine-name">Strategy Machine</div><div class="machine-desc">วิเคราะห์คู่แข่ง & แบบสอบถามลูกค้า</div></div>
+      </div>
+      <div class="machine-tags"><span class="tag">วิเคราะห์คู่แข่ง</span><span class="tag">วิเคราะห์แบบสอบถาม</span><span class="tag">ตัดสินใจได้เร็วขึ้น</span></div>
+      <div class="demo-note">🎬 <span>ดู demo นี้ใน <a href="https://vimeo.com/1193296338?share=copy&fl=sv&fe=ci" target="_blank">วิดีโอย้อนหลัง</a> — เห็น Claude วิเคราะห์ข้อมูลให้สดๆ</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PROMPTS -->
+<div id="prompts">
+  <div class="section-divider">
+    <div class="section-divider-inner">
+      <div class="sdiv-icon">💬</div>
+      <div><h2><span>Prompts</span> ที่ใช้ใน Session</h2><p>Copy & Paste ได้เลย</p></div>
+    </div>
+  </div>
+  <div class="section-wrap">
+
+    <div class="prompt-box">
+      <div class="prompt-label">Claude COWORK · หาไอเดียทำคลิปจาก YouTube</div>
+      <div class="prompt-text" id="p1">ช่วยค้นหาคลิป YouTube ที่กำลังไวรัลในช่วง 7 วันที่ผ่านมา ในหัวข้อที่เกี่ยวกับ "AI สำหรับธุรกิจ" หรือ "ลดต้นทุนธุรกิจด้วย AI"
+
+สำหรับแต่ละคลิปให้บอก:
+- ชื่อคลิปและ channel
+- ยอดวิว / engagement
+- แก่นหลักของคลิปนี้คืออะไร
+- ทำไมมันถึงไวรัล — hook หรือมุมมองอะไรที่ทำให้คนดู
+- นำมุมนี้มาปรับสำหรับกลุ่มเจ้าของธุรกิจไทยได้อย่างไร
+
+หามาทุกวัน วันละ 3 คลิปที่ดี เสร็จแล้วใส่อัพเดทไว้ใน idea ใน notion ตั้งชื่อคลิปหัวข้อขึ้นต้นด้วยคำว่า [คลิปไวรัลจาก YT]</div>
+      <button class="copy-btn" onclick="copyPrompt('p1',this)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy Prompt</button>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-label">Claude COWORK · ตั้งเวลา Approve Content</div>
+      <div class="prompt-text" id="p2">นำ Content [คลิปไวรัล YT] ที่อยู่ใน Approved ใน notion มาสร้างเป็นสคริปท์คลิปยาว 3 นาที
+
+แสกนหน้านี้ทุกวัน ถ้ามีอยู่ใน Approved เพิ่มเติม ก็สร้างสคริปท์คลิปได้เลย ใส่ Hook ใส่สคริปท์ ใส่ CTA เพื่อเพิ่ม engagement
+
+พอสร้างสคริปท์เสร็จแล้ว ฝากย้ายสคริปท์ที่สร้างออกจาก Approved ไปอยู่ในแท็บ Review ด้วย</div>
+      <button class="copy-btn" onclick="copyPrompt('p2',this)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy Prompt</button>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-label">Claude COWORK · แคมเปญ Line OA</div>
+      <div class="prompt-text" id="p3">ช่วยแพลนแคมเปญ LINE OA 4 ข้อนี้ ใน Notion Campaign: [ใส่ชื่อแคมเปญ]
+
+- ภาพรวมแคมเปญ
+- ตาราง Broadcast
+- Segment เป้าหมาย
+- ข้อความและ Creative</div>
+      <button class="copy-btn" onclick="copyPrompt('p3',this)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy Prompt</button>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-label">Claude COWORK · Repurpose คลิปไวรัล</div>
+      <div class="prompt-text" id="p4">คลิปนี้กำลังไวรัลในโซเชียล ช่วยดูคลิปนี้เป็นแนวทาง แล้วเขียน:
+
+- สคริปท์วิดิโอยาว 1-3 นาที จำนวน 3 คลิป
+- บทความสำหรับเฟสบุ๊ค 3 บทความ
+- Hook สำหรับ Reel 3 หัวข้อ
+
+โดยดึงแก่นของคลิปนี้มาปรับให้เข้ากับธุรกิจและกลุ่มเป้าหมายของบริษัท (ข้อมูลเพิ่มเติมดึงจาก notion)
+
+เสร็จแล้ว ใส่เอาไว้ใน idea ใน notion ได้เลย</div>
+      <button class="copy-btn" onclick="copyPrompt('p4',this)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy Prompt</button>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-label">Claude Chrome Extension · วิเคราะห์ Instagram</div>
+      <div class="prompt-text" id="p5">วิเคราะห์โปรไฟล์ Instagram นี้ให้หน่อย โดยแยกให้ชัดเจนว่า:
+
+- คอนเทนต์ธีมไหนกำลังได้ผลตอบรับดีที่สุด
+- หัวข้ออะไรที่สร้าง Engagement สูงที่สุด
+- ช่องว่างหรือจุดอ่อนหลักของกลยุทธ์นี้อยู่ตรงไหน
+- กลุ่มผู้ติดตามนี้มีแนวโน้มจะยอมจ่ายเงินซื้อสินค้าแบบไหนได้จริง</div>
+      <button class="copy-btn" onclick="copyPrompt('p5',this)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy Prompt</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- เหมาะกับใคร -->
+<div id="fit">
+  <div class="section-divider">
+    <div class="section-divider-inner">
+      <div class="sdiv-icon">✓</div>
+      <div><h2>เหมาะ<span>กับใคร</span></h2><p>เช็คตัวเองก่อนเริ่ม</p></div>
+    </div>
+  </div>
+  <div class="section-wrap">
+
+    <div class="card" style="margin-bottom:12px;">
+      <div class="card-title" style="color:var(--green);">✓ เหมาะถ้าคุณเป็นแบบนี้</div>
+      <ul class="check-list">
+        <li><span class="ci cg">✓</span><span>เจ้าของธุรกิจที่มีทีมงานและอยากลดต้นทุนโดยไม่ต้องจ้างคนเพิ่ม</span></li>
+        <li><span class="ci cg">✓</span><span>ธุรกิจที่ต้องการ content สม่ำเสมอแต่ทีมไม่พอ หรือ output ช้า</span></li>
+        <li><span class="ci cg">✓</span><span>คนที่ใช้ AI บ้างแล้วแต่ยังทำทุกอย่างเอง</span></li>
+        <li><span class="ci cg">✓</span><span>ทุกประเภทธุรกิจ — e-commerce, service, coaching, agency</span></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--red);">✕ ไม่เหมาะถ้าคุณเป็นแบบนี้</div>
+      <ul class="check-list">
+        <li><span class="ci cr">✕</span><span>คาดหวังว่า AI จะทำทุกอย่างโดยไม่ต้อง review เลย</span></li>
+        <li><span class="ci cr">✕</span><span>ไม่พร้อมเรียนรู้และปรับ workflow ของธุรกิจตัวเอง</span></li>
+        <li><span class="ci cr">✕</span><span>ต้องการ magic bullet ที่ไม่ต้องลงมือทำอะไรเลย</span></li>
+        <li><span class="ci cr">✕</span><span>ธุรกิจที่ยังไม่มี offer หรือลูกค้าเลย</span></li>
+      </ul>
+    </div>
+
+    <div class="highlight">
+      <strong>สิ่งที่ต้องมีก่อนเริ่ม:</strong><br>
+      Claude Cowork (paid) · Notion (free) · Google Account · Social media accounts ที่จะโพสต์
+    </div>
+
+  </div>
+</div>
+
+<!-- WORKSHOP OFFER -->
+<div id="offer">
+  <div class="section-divider">
+    <div class="section-divider-inner">
+      <div class="sdiv-icon">🚀</div>
+      <div><h2>Business Growth <span>Workshop 2 วัน</span></h2><p>เรียนเข้มข้น 2 วัน ได้ระบบจริง</p></div>
+    </div>
+  </div>
+  <div class="section-wrap">
+
+    <div class="card">
+      <div class="card-title">Workshop นี้คืออะไร?</div>
+      <p>เรียนเข้มข้น 2 วันเต็ม — จบแล้วระบบ Claude COWORK ของคุณทำงานได้จริงในธุรกิจคุณ ไม่ใช่แค่เรียนทฤษฎี แต่ลงมือตั้งระบบจริงระหว่าง workshop เลย</p>
+    </div>
+
+    <div class="card" style="margin-bottom:12px;">
+      <div class="card-title">📅 วันและเวลา</div>
+      <ul class="check-list">
+        <li><span class="ci cg">✓</span><span><strong>30 พ.ค. (เสาร์)</strong> — Day 1: Content Machine + Launch Machine</span></li>
+        <li><span class="ci cg">✓</span><span><strong>31 พ.ค. (อาทิตย์)</strong> — Day 2: Strategy Machine + Line Machine</span></li>
+        <li><span class="ci cg">✓</span><span><strong>9:00–15:00</strong> (6 ชั่วโมง/วัน รวม 12 ชั่วโมง)</span></li>
+      </ul>
+    </div>
+
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-title">📚 หลักสูตร 2 วัน</div>
+      <div style="margin-bottom:16px;">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);margin-bottom:8px;">Day 1 · 30 พ.ค. — Content Machine + Launch Machine</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="tag">ทำคอนเทนต์</span>
+          <span class="tag">เขียนโฆษณา</span>
+          <span class="tag">รีโพส/ดัดแปลงคอนเทนต์</span>
+          <span class="tag">เขียนสคริปต์วิดีโอ</span>
+          <span class="tag">วางแผนคอนเทนต์รายสัปดาห์</span>
+          <span class="tag">ทำแคมเปญเปิดตัว (Launch)</span>
+          <span class="tag">วิเคราะห์คู่แข่ง</span>
+          <span class="tag">ออกแบบ/จัดโปร (Offer)</span>
+        </div>
+      </div>
+      <div style="height:0.5px;background:var(--border);margin-bottom:16px;"></div>
+      <div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);margin-bottom:8px;">Day 2 · 31 พ.ค. — Strategy Machine + Line Machine</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="tag">วิเคราะห์แบบสอบถามลูกค้า</span>
+          <span class="tag">รายงานผลแคมเปญ</span>
+          <span class="tag">เขียน Broadcast Message</span>
+          <span class="tag">สร้าง Welcome Message</span>
+          <span class="tag">เขียนสคริปต์ Follow-up</span>
+          <span class="tag">ออกแบบ Promo Campaign</span>
+          <span class="tag">วางแผน Line OA Calendar</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:12px;">
+      <div class="card-title">🛠 สิ่งที่คุณได้รับ</div>
+      <ul class="check-list">
+        <li><span class="ci cg">✓</span><span>Claude Skills สำเร็จรูป 20+ ตัว — Facebook/Instagram/TikTok · YouTube · Facebook Ads · Line OA · Sales Funnel</span></li>
+        <li><span class="ci cg">✓</span><span>Hands-on ตลอด 2 วัน — ตั้งระบบในธุรกิจคุณระหว่าง workshop</span></li>
+        <li><span class="ci cg">✓</span><span>30-day Chat Support หลัง Workshop</span></li>
+        <li><span class="ci cg">✓</span><span>Lifetime Recording Access</span></li>
+      </ul>
+    </div>
+
+    <div class="card" style="margin-bottom:24px; background:rgba(204,120,92,0.06); border-color:rgba(204,120,92,0.3);">
+      <div class="card-title">🎁 Bonus Class (สำหรับผู้เข้าร่วม Workshop)</div>
+      <p style="margin-bottom:12px;">สร้าง Dashboard ธุรกิจผ่าน Notion — class พิเศษก่อน Day 1 เพื่อให้คุณพร้อม 100%</p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">
+        <span class="tag">ตั้งค่า Notion Workspace</span>
+        <span class="tag">สร้าง Content Calendar</span>
+        <span class="tag">เชื่อมต่อ Claude กับ Notion</span>
+        <span class="tag">ตั้งระบบ Approve/Review</span>
+        <span class="tag">สร้าง Brand Voice Document</span>
+      </div>
+      <div style="background:rgba(204,120,92,0.12);border:1px solid rgba(204,120,92,0.3);border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.7;">
+        <strong style="color:var(--terra);">⏰ Bonus Class เริ่ม 20 พ.ค. เวลา 20:00 น.</strong><br>
+        สำหรับคนที่สมัครภายใน <strong>20 พฤษภาคม 2568</strong> เท่านั้น
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📦 ทุกอย่างใน Workshop</div>
+      <div style="display:flex;flex-direction:column;gap:0;">
+        <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:0.5px solid var(--border);font-size:14px;"><span>Workshop 2 วัน (12 ชั่วโมง) กับคุณติน่า</span><span style="color:var(--terra);font-weight:600;flex-shrink:0;margin-left:12px;">15,000 ฿</span></div>
+        <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:0.5px solid var(--border);font-size:14px;"><span>Claude Skills สำเร็จรูป: Facebook / Instagram / TikTok</span><span style="color:var(--terra);font-weight:600;flex-shrink:0;margin-left:12px;">5,000 ฿</span></div>
+        <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:0.5px solid var(--border);font-size:14px;"><span>Claude Skills สำเร็จรูป: YouTube / Video</span><span style="color:var(--terra);font-weight:600;flex-shrink:0;margin-left:12px;">5,000 ฿</span></div>
+        <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:0.5px solid var(--border);font-size:14px;"><span>Claude Skills สำเร็จรูป: Facebook Ads</span><span style="color:var(--terra);font-weight:600;flex-shrink:0;margin-left:12px;">5,000 ฿</span></div>
+        <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:0.5px solid var(--border);font-size:14px;"><span>Claude Skills สำเร็จรูป: Line OA</span><span style="color:var(--terra);font-weight:600;flex-shrink:0;margin-left:12px;">5,000 ฿</span></div>
+        <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:0.5px solid var(--border);font-size:14px;"><span>Claude Skills สำเร็จรูป: Sales Funnel / Pages</span><span style="color:var(--terra);font-weight:600;flex-shrink:0;margin-left:12px;">5,000 ฿</span></div>
+        <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:0.5px solid var(--border);font-size:14px;"><span>30-day Chat Support หลัง Workshop</span><span style="color:var(--terra);font-weight:600;flex-shrink:0;margin-left:12px;">5,000 ฿</span></div>
+        <div style="display:flex;justify-content:space-between;padding:10px 0;font-size:14px;"><span>Lifetime Access ทุก Skills และ Recording</span><span style="color:var(--terra);font-weight:600;flex-shrink:0;margin-left:12px;">ไม่มีกำหนด</span></div>
+        <div style="display:flex;justify-content:space-between;padding:14px 0 0;border-top:1.5px solid rgba(26,26,26,0.15);margin-top:6px;"><span style="font-weight:700;font-size:16px;">มูลค่ารวม</span><span style="font-family:'Kanit',sans-serif;font-size:22px;font-weight:700;color:var(--terra);">45,000+ ฿</span></div>
+      </div>
+    </div>
+
+    <div class="offer-price">
+      <div class="offer-original">45,000 ฿</div>
+      <div class="offer-price-num">14,990 ฿</div>
+      <div class="offer-sub">ผ่อนผ่านบัตรได้สูงสุด 10 เดือน</div>
+    </div>
+
+    <a href="https://lin.ee/qhZlMfX" target="_blank" class="offer-cta">สนใจทัก "WORKSHOP" ไปที่ไลน์แอดมิน</a>
+    <div style="background:rgba(226,75,74,0.08);border:1px solid rgba(226,75,74,0.2);border-radius:12px;padding:12px 16px;text-align:center;margin-bottom:12px;font-size:14px;color:var(--red);font-weight:600;">⏰ ปิดรับสมัคร 27 พฤษภาคม 2568</div>
+    <div class="guarantee">ไม่มีความเสี่ยง — ไม่พอใจภายใน 15 วัน คืนเงินทันที</div>
+
+  </div>
+</div>
+
+<div class="footer">สร้างโดย <strong>Tina Taylor</strong> · Claude COWORK Live #2 · 18 พฤษภาคม 2568</div>
+
+<script>
+  const sections = ['highlights','machines','prompts','fit','offer'];
+  const tabs = document.querySelectorAll('.nav-tab');
+  window.addEventListener('scroll', () => {
+    let current = 'highlights';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 120) current = id;
+    });
+    tabs.forEach(t => t.classList.toggle('active', t.getAttribute('href') === '#' + current));
+  });
+
+  function copyPrompt(id, btn) {
+    navigator.clipboard.writeText(document.getElementById(id).textContent).then(() => {
+      btn.classList.add('copied');
+      btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Copied!`;
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy Prompt`;
+      }, 2000);
+    });
+  }
+</script>
+</body>
+</html>
